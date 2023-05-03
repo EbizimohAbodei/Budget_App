@@ -1,4 +1,5 @@
 import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
+
 import { IContext, IIncome } from "../types/alltypes";
 import { BalanceContext } from "../App";
 
@@ -69,14 +70,14 @@ const Expense = () => {
             onChange={handleChange}
           />
         </div>
-        <button>Add Expense</button>
+        <button aria-label="Add Expense">Add Expense</button>
       </form>
 
       <div className="result">
         {details.map((expense) => {
           return (
             <li>
-              {expense.source}:{"  "} {expense.amount}EUR on{" "}
+              {expense.source}:{"  "} {expense.amount} EUR on{" "}
               {new Date(expense.date).toUTCString().slice(0, 4)}{" "}
               {new Date(expense.date).toLocaleDateString("en-US", {
                 dateStyle: "medium",

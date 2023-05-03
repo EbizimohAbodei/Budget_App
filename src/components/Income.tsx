@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
-import { BalanceContext } from "../App";
 
+import { BalanceContext } from "../App";
 import { IContext, IIncome } from "../types/alltypes";
 
 const Income = () => {
@@ -72,7 +72,7 @@ const Income = () => {
             min={todayDate}
           />
         </div>
-        <button>Add Income</button>
+        <button aria-label="Add Income">Add Income</button>
       </form>
       <div className="result">
         {details.map((income) => {

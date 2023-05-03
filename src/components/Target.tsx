@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+
 import { BalanceContext } from "../App";
 import { IContext } from "../types/alltypes";
 
@@ -31,8 +32,12 @@ const Target = () => {
           value={target}
         />
 
-        <button onClick={handleSet}>Set target</button>
-        <button onClick={handleReset}>Reset</button>
+        <button aria-label="Set Target" onClick={handleSet}>
+          Set target
+        </button>
+        <button aria-label="Reset Target" onClick={handleReset}>
+          Reset
+        </button>
       </div>
 
       <p>Current saving: {savings}</p>
@@ -41,7 +46,9 @@ const Target = () => {
 
       <meter value={value > 0 ? savings / value : 0} />
 
-      <button onClick={handleWithdraw}>Withdraw savings</button>
+      <button aria-label="Withdraw Savings" onClick={handleWithdraw}>
+        Withdraw savings
+      </button>
     </div>
   );
 };
