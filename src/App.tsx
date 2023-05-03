@@ -1,27 +1,38 @@
-import React from "react";
-import logo from "./logo.svg";
+import { createContext, useState } from "react";
 import "./App.css";
+import Expense from "./components/Expense";
+import Income from "./components/Income";
+import Target from "./components/Target";
+import ShowBal from "./components/ShowBal";
+import { IContext } from "./types/alltypes";
 
+export const BalanceContext = createContext<IContext | null>(null);
 function App() {
+  const [totalIncome, setTotalIncome] = useState(0);
+  const [target, setTarget] = useState("");
+  const [savings, setSavings] = useState(0);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>
-          Delete <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BalanceContext.Provider
+        value={{
+          totalIncome,
+          setTotalIncome,
+          target,
+          setTarget,
+          savings,
+          setSavings,
+        }}
+      >
+        <section className="top-main">
+          <Income />
+          <Expense />
+          <Target />
+        </section>
+
+        <section>
+          <ShowBal />
+        </section>
+      </BalanceContext.Provider>
     </div>
   );
 }
