@@ -19,17 +19,15 @@ const Expense = () => {
     });
   };
 
-
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-;
-
     if (!expense.amount || !expense.date || !expense.source) {
       alert("empty fields");
       return;
     }
     if (Number(expense.amount) > totalIncome) {
       alert("insufficient balance");
+      return;
     }
 
     const allincome = [...details, expense];
@@ -56,7 +54,7 @@ const Expense = () => {
         <div>
           <h2>Amount of expense</h2>
           <input
-            type="text"
+            type="number"
             value={expense.amount}
             name="amount"
             onChange={handleChange}
