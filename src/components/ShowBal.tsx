@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 
 import { BalanceContext } from "../App";
-import { IContext } from "../types/alltypes";
+import { Context } from "../types/context";
 const ShowBal = () => {
   const { setTotalIncome, totalIncome, savings, setSavings, target } =
-    useContext(BalanceContext) as IContext;
+    useContext(BalanceContext) as Context;
 
   const [value, setValue] = useState("");
 

@@ -1,12 +1,13 @@
 import { createContext, useState } from "react";
+
 import "./App.css";
 import Expense from "./components/Expense";
 import Income from "./components/Income";
 import Target from "./components/Target";
 import ShowBal from "./components/ShowBal";
-import { IContext } from "./types/alltypes";
+import { Context } from "./types/context";
 
-export const BalanceContext = createContext<IContext | null>(null);
+export const BalanceContext = createContext<Context | null>(null);
 function App() {
   const [totalIncome, setTotalIncome] = useState(0);
   const [target, setTarget] = useState("");

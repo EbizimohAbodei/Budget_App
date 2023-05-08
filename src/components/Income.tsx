@@ -1,20 +1,19 @@
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 
 import { BalanceContext } from "../App";
-import { IContext, IIncome } from "../types/alltypes";
+import { IncomeInterface } from "../types/income";
+import { Context } from "../types/context";
 
 const Income = () => {
-  const { setTotalIncome } = useContext(BalanceContext) as IContext;
-
-  const [income, setIncome] = useState<IIncome>({
+  const { setTotalIncome } = useContext(BalanceContext) as Context;
+  const [income, setIncome] = useState<IncomeInterface>({
     amount: "",
     date: "",
     source: "",
   });
-  const [details, setDetails] = useState<IIncome[]>([]);
 
+  const [details, setDetails] = useState<IncomeInterface[]>([]);
   let todayDate = new Date().toISOString().slice(0, 10);
-
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setIncome({
       ...income,
@@ -24,20 +23,16 @@ const Income = () => {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-
     if (!income.amount || !income.date || !income.source) {
       alert("empty fields");
       return;
     }
-
     const allincome = [...details, income];
-
     setDetails(allincome);
-
     setTotalIncome((prev: number) => prev + Number(income.amount));
-
     setIncome({ amount: "", date: "", source: "" });
   };
+
   return (
     <section className="part">
       <form onSubmit={handleSubmit}>

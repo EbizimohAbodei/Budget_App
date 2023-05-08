@@ -1,18 +1,17 @@
 import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
 
-import { IContext, IIncome } from "../types/alltypes";
+import { IncomeInterface } from "../types/income";
+import { Context } from "../types/context";
 import { BalanceContext } from "../App";
 
 const Expense = () => {
-  const [expense, setExpense] = useState<IIncome>({
+  const [expense, setExpense] = useState<IncomeInterface>({
     amount: "",
     date: "",
     source: "",
   });
-  const { setTotalIncome, totalIncome } = useContext(
-    BalanceContext
-  ) as IContext;
-  const [details, setDetails] = useState<IIncome[]>([]);
+  const { setTotalIncome, totalIncome } = useContext(BalanceContext) as Context;
+  const [details, setDetails] = useState<IncomeInterface[]>([]);
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setExpense({
       ...expense,
@@ -32,13 +31,11 @@ const Expense = () => {
     }
 
     const allincome = [...details, expense];
-
     setDetails(allincome);
-
     setTotalIncome((prev: number) => prev - Number(expense.amount));
-
     setExpense({ amount: "", date: "", source: "" });
   };
+
   return (
     <section className="part">
       <form onSubmit={handleSubmit}>
